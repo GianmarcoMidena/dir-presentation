@@ -1,0 +1,22 @@
+\begin{frame}{Problem Settings}
+	\begin{itemize}
+		\item $\{(\mathbf{x}_i, y_i)\}_{i=1}^N$: training set
+		\item $\mathbf{x}_i\in\mathbb{R}^{d}$: input
+		\item $y_i\in\mathcal{Y}$: continuous label or target
+		\item $b_i\in\mathcal{B}$: discrete label or target
+		\item $\mathcal{Y}\subset\mathbb{R}$: continuous label space
+		\item $\mathcal{B} = \{1,\dots,M\}\subset\mathbb{Z}^+$: index space
+		\begin{itemize}
+			\item divides $\mathcal{Y}$ into $M$ groups (bins) with equal intervals $[t_j, t_{j+1})$
+			\item $\{[t_0, t_1), \dots, [t_{M-1}, t_M)\}$: discrete label space
+			\item $t_k\in\mathcal{Y}$
+			\item minimum resolution
+			\begin{itemize}
+				\item e.g., $\delta y \triangleq t_{j+1} - t_j = 1$ in age estimation
+			\end{itemize}	
+		\end{itemize}
+		\item $\hat{y}_i = g(\mathbf{z}_i) \in \mathbb{R}$: predicted continuous label
+		\item $\mathbf{z}_i = f(\mathbf{x}_i; \theta) \in \mathbb{R}^{d'}$: learned representation
+		\item $\theta$: trainable model parameters
+	\end{itemize}
+\end{frame}
