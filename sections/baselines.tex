@@ -1,0 +1,44 @@
+\begin{frame}{Baselines (1/2)}
+	\begin{itemize}\setlength\itemsep{1.5em}
+		\item Vanilla: neglects data imbalance
+		\item Synthetic samples
+		\begin{itemize}
+			\item SMOTER (\cite{torgo2013smote})
+			\begin{enumerate}
+				\item Defines frequent and rare regions using label density.
+				\item Creates synthetic samples for pre-defined rare regions by linearly interpolating both inputs and labels.
+			\end{enumerate}
+			\item SMOGN (\cite{branco2017smogn}): augments SMOTER with Gaussian noise
+		\end{itemize}
+		\item Focal-R
+		\begin{equation*}
+			\frac{1}{n} \sum_{i=1}^n \sigma(|\beta e_i|)^\gamma e_i
+		\end{equation*}
+		\begin{itemize}
+			\item Error-aware loss
+			\item Maps the absolute error into $[0, 1]$.
+			\item $e_i$: $L_1$ error for the $i$-th sample
+			\item $\beta$, $\gamma$: hyper-parameters
+			\item Inspired by Focal Loss (\cite{lin2017focal}) for classification
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Baselines (2/2)}
+	\begin{itemize}\setlength\itemsep{1.5em}
+		\item Regressor re-training (RRT)
+		\begin{itemize}
+			\item Two-stage training
+			\begin{enumerate}
+				\item Train encoder
+				\item Re-train regressor with inverse re-weighting and frozen encoder.
+			\end{enumerate}
+			\item Inspired by \cite{kang2019decoupling}
+		\end{itemize}
+		\item Cost-sensitive re-weighting: re-weighting schemes based on label distribution
+		\begin{itemize}
+			\item Inverse-frequency weighting (INV)
+			\item Square-root weighting variant (SQINV)
+		\end{itemize}
+	\end{itemize}
+\end{frame}
