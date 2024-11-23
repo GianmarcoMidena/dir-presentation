@@ -88,6 +88,38 @@
 	\credit{Image}{yang2021delving}
 \end{frame}
 
+\begin{frame}{Change of feature statistics w.r.t. epoch}
+	\begin{figure}[h]
+		\begin{subfigure}{0.48\textwidth}
+			\begin{tikzpicture}
+				\node[above=0.95em, right=1.5em] at (current page.west)
+				{
+					\includegraphics[trim={0 28.5em 0 0},clip,scale=0.4]{images/fds_diff_train.pdf}
+				};
+				\node[below=4.8em, right=1.5em] at (current page.west)
+				{
+					\includegraphics[trim={0 0 0 49.2em},clip,scale=0.4]{images/fds_diff_train.pdf}
+				};
+			\end{tikzpicture}
+			\caption{Mean}
+		\end{subfigure}\hspace{1em}%
+		\begin{subfigure}{0.48\textwidth}
+			\begin{tikzpicture}
+				\node[left=1.5em] at (current page.east) 
+				{
+					\includegraphics[trim={0 0 0 24.7em},clip,scale=0.4]{images/fds_diff_train.pdf}
+				};
+			\end{tikzpicture}
+			\caption{Variance}
+		\end{subfigure}
+		%\caption{}
+	\end{figure}
+	\begin{itemize}
+		\item ${\bm{\mu}, \bm{\Sigma}}$: Running mean and variance
+		\item ${\bm{\tilde{\mu}}, \bm{\tilde{\Sigma}}}$: Smoothed mean and variance
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{The FDS Algorithm}
 	\begin{figure}[h]
 		\includegraphics[width=\linewidth]{images/teaser_fds.pdf}
