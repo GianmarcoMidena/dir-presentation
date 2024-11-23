@@ -70,6 +70,17 @@ hyperref={
 
 \newcommand{\red}[1]{{\color{red} #1}}
 
+\newcommand{\sectionframe}[1]{
+	\begin{frame}[noframenumbering,plain]
+		\vfill
+		\centering
+		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+			\usebeamerfont{title}#1\par%
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}
+
 \title[Deep Imbalanced Regression]
 {\href{https://doi.org/10.48550/arXiv.2102.09554}{Deep Imbalanced Regression}}
 %\subtitle{}
@@ -107,36 +118,9 @@ ICML 2021
 
 \input{sections/data}
 
-\begin{frame}{Test Error on Categorical vs. Continuous Label Space}
-	\begin{figure}[h]
-	\begin{subfigure}{0.48\textwidth}
-		\includegraphics[width=\linewidth]{images/err_motivate_1_left.pdf}
-		\caption{CIFAR-100 (subsampled)}
-	\end{subfigure}\hspace{1em}%
-	\begin{subfigure}{0.48\textwidth}
-		\includegraphics[width=\linewidth]{images/err_motivate_1_right.pdf}
-		\caption{IMDB-WIKI (subsampled)}
-	\end{subfigure}
-	%\caption{}
-	\end{figure}
-	\credit{Image}{yang2021delving}
-\end{frame}
+\input{sections/label_distribution_smoothing}
 
-\begin{frame}{Label Distribution Smoothing}
-	\begin{figure}[h]
-		\includegraphics[width=\linewidth]{images/err_motivate_sep.pdf}
-		%\caption{}
-	\end{figure}
-	\credit{Image}{yang2021delving}
-\end{frame}
-
-\begin{frame}{Feature Distribution Smoothing}
-	\begin{figure}[h]
-		\includegraphics[width=\linewidth]{images/teaser_fds.pdf}
-		%\caption{}
-	\end{figure}
-	\credit{Image}{yang2021delving}
-\end{frame}
+\input{sections/feature_distribution_smoothing}
 
 \input{sections/baselines}
 
