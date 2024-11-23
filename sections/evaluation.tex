@@ -1,0 +1,25 @@
+\begin{frame}{Evaluation}
+	\begin{itemize}\setlength\itemsep{1.5em}
+		\item Divide target space into disjoint regions (bins)
+		\begin{itemize}
+			\item \emph{Many-shot}: $>100$ training examples
+			\item \emph{Medium-shot}: $20$-$100$ training examples
+			\item \emph{Few-shot}: $<20$ training examples
+			\item \emph{Zero-shot}: $0$ training examples
+			\item[-] Inspired by \cite{liu2019large}
+		\end{itemize}
+		\item Metrics
+		\begin{itemize}
+			\item Mean Absolute Error (MAE)
+			\item Mean Squared Error (MSE)
+			\item Pearson Correlation (PCC)
+			\item Geometric Mean Error (GME)
+			\begin{equation*}
+				GME = \sqrt[n]{\prod_{i=1}^n |y_i - \hat{y_i}|}
+			\end{equation*}
+			\begin{itemize}
+				\item Pros: + fairness (uniformity) in prediction
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
