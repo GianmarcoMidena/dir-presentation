@@ -40,6 +40,10 @@ hyperref={
 
 \usepackage{subcaption}
 
+\usepackage{booktabs}
+
+\colorlet{darkgreen}{green!65!black}
+
 \DeclareCiteCommand{\citeauthor}
 {\boolfalse{citetracker}%
 	\boolfalse{pagetracker}%
@@ -95,6 +99,8 @@ ICML 2021
 	\credit{Image}{yang2021delving}
 \end{frame}
 
+%\input{sections/data}
+
 \begin{frame}{Test Error on Categorical vs. Continuous Label Space}
 	\begin{figure}[h]
 	\begin{subfigure}{0.48\textwidth}
@@ -131,6 +137,8 @@ ICML 2021
 \input{sections/baselines}
 
 \input{sections/evaluation}
+
+\input{sections/results}
 
 \section{References}
 \begin{frame}[noframenumbering,plain]%[allowframebreaks]
