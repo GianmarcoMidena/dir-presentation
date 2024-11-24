@@ -65,7 +65,13 @@ hyperref={
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-\newcommand{\credit}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \citeauthor{#2} (\citeyear{#2})}}}
+\newcommand{\footlineextra}[1]{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[yshift=1.5ex,anchor=south east] at (current page.south east) {\usebeamerfont{author in head/foot}#1};
+	\end{tikzpicture}
+}
+
+\newcommand{\credit}[2]{\footlineextra{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \citeauthor{#2} (\citeyear{#2})}}}}
 \newcommand{\crediturl}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \url{#2}}}}
 \let\oldcite\cite
 \renewcommand{\cite}[1]{{\color{blue} \oldcite{#1}}}
