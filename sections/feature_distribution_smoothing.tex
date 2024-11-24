@@ -1,4 +1,23 @@
-\sectionframe{Feature Distribution Smoothing (FDS)}
+\begin{frame}{Feature Distribution Smoothing (FDS)}
+	\begin{itemize}\setlength\itemsep{1.5em}
+		\item<2-> Starting points
+		\begin{enumerate}
+			\item<2-> Continuity in the \textbf{target} space $\longleftrightarrow$ Continuity in the \textbf{feature} space
+			\item<3-> Data balance $\Longrightarrow$ close feature statistics of nearby targets
+		\end{enumerate}
+		\item<4-> Feature statistics: mean and variance w.r.t. each bin
+		\begin{equation*}
+			\{\bm{\mu}_b,\bm{\sigma}_b\}_{b=1}^B
+		\end{equation*}
+		\item<5-> (next slides) Feature statistics similarity: cosine similarity of \\feature statistics between one anchor bin $b_0$ and all other bins
+		\begin{itemize}
+			\item $b_0 = 0, 30, 60, 90$ (age): chosen anchor bins
+			\item different target densities: \\many ($>$100), medium (20-100), few~($<$20) examples
+			\item task: person's picture $\longrightarrow$ person's age
+			\item data source: IMDB-WIKI
+		\end{itemize}
+	\end{itemize}
+\end{frame}
 
 \input{sections/feature_statistics_similarity}
 

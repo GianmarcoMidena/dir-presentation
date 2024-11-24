@@ -1,41 +1,4 @@
-\begin{frame}{Feature statistics similarity (1/4)}{Anchor age 0}
-	\begin{figure}[h]
-		\begin{subfigure}{0.48\textwidth}
-			\includegraphics[width=\linewidth]{images/feat_sim_fds_base_0.pdf}
-			\caption{Baseline}
-		\end{subfigure}\hspace{1em}%
-		\begin{subfigure}{0.48\textwidth}
-			\includegraphics[width=\linewidth]{images/feat_sim_fds_ours_0.pdf}
-			\caption{FDS}
-		\end{subfigure}
-		%\caption{}
-	\end{figure}
-	\vspace{-1em}
-	\begin{columns}
-		\footnotesize
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item High similarities with further regions
-				\item Lower similarities with some closer regions
-			\end{itemize}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}
-				\item Improved feature statistics calibration:
-				\begin{itemize}
-					\vspace{-1.5em}
-					\scriptsize
-					\item High similarity only in neighbourhood
-					\item ``The further the region the lower the similarity''
-					\item Gradual change of similarity
-				\end{itemize}
-			\end{itemize}
-		\end{column}
-	\end{columns}
-	\credit{Image}{yang2021delving}
-\end{frame}
-
-\begin{frame}{Feature statistics similarity (2/4)}{Anchor age 30}
+\begin{frame}{Feature statistics similarity (1/4)}{Anchor age 30}
 	\begin{figure}[h]
 		\begin{subfigure}{0.48\textwidth}
 			\includegraphics[width=\linewidth]{images/feat_sim_fds_base_30.pdf}
@@ -52,8 +15,9 @@
 		\footnotesize
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item High similarities with further regions
-				\item Lower similarities with some closer regions
+				\item High similarity in neighbourhood
+				\item \red{High similarities with further regions}
+				\item \red{Lower similarities with some closer regions}
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
@@ -64,7 +28,7 @@
 					\scriptsize
 					\item High similarity only in neighbourhood
 					\item ``The further the region the lower the similarity''
-					\item Gradual change of similarity
+					\item More gradual similarity change
 				\end{itemize}
 			\end{itemize}
 		\end{column}
@@ -72,7 +36,7 @@
 	\credit{Image}{yang2021delving}
 \end{frame}
 
-\begin{frame}{Feature statistics similarity (3/4)}{Anchor age 60}
+\begin{frame}{Feature statistics similarity (2/4)}{Anchor age 60}
 	\begin{figure}[h]
 		\begin{subfigure}{0.48\textwidth}
 			\includegraphics[width=\linewidth]{images/feat_sim_fds_base_60.pdf}
@@ -89,8 +53,9 @@
 		\footnotesize
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item High similarities with further regions
-				\item Lower similarities with some closer regions
+				\item High similarity in neighbourhood
+				\item \red{High similarities with further regions}
+				\item \red{Lower similarities with some closer regions}
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
@@ -101,7 +66,45 @@
 					\scriptsize
 					\item High similarity only in neighbourhood
 					\item ``The further the region the lower the similarity''
-					\item Gradual change of similarity
+					\item More gradual similarity change
+				\end{itemize}
+			\end{itemize}
+		\end{column}
+	\end{columns}
+	\credit{Image}{yang2021delving}
+\end{frame}
+
+\begin{frame}{Feature statistics similarity (3/4)}{Anchor age 0}
+	\begin{figure}[h]
+		\begin{subfigure}{0.48\textwidth}
+			\includegraphics[width=\linewidth]{images/feat_sim_fds_base_0.pdf}
+			\caption{Baseline}
+		\end{subfigure}\hspace{1em}%
+		\begin{subfigure}{0.48\textwidth}
+			\includegraphics[width=\linewidth]{images/feat_sim_fds_ours_0.pdf}
+			\caption{FDS}
+		\end{subfigure}
+		%\caption{}
+	\end{figure}
+	\vspace{-1em}
+	\begin{columns}
+		\footnotesize
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item High similarity in neighbourhood for mean
+				\item \red{High similarities with further regions}
+				\item \red{Lower similarities with some closer regions, e.g., variance neighbourhood}
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item Improved feature statistics calibration:
+				\begin{itemize}
+					\vspace{-1.5em}
+					\scriptsize
+					\item High similarity only in neighbourhood
+					\item ``The further the region the lower the similarity''
+					\item More gradual similarity change
 				\end{itemize}
 			\end{itemize}
 		\end{column}
@@ -126,8 +129,9 @@
 		\footnotesize
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item High similarities with further regions
-				\item Lower similarities with some closer regions
+				\item High similarity in neighbourhood, \\esp. for mean
+				\item \red{High similarities with further regions}
+				\item \red{Lower similarities with some closer regions}
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
@@ -138,11 +142,10 @@
 					\scriptsize
 					\item High similarity only in neighbourhood
 					\item ``The further the region the lower the similarity''
-					\item Gradual change of similarity
+					\item More gradual similarity change
 				\end{itemize}
 			\end{itemize}
 		\end{column}
 	\end{columns}
 	\credit{Image}{yang2021delving}
 \end{frame}
-\endgroup
