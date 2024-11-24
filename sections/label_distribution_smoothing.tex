@@ -82,9 +82,9 @@
 		\end{subfigure}
 		%\caption{}
 	\end{figure}
-	\footnotesize
 	\vspace{-1em}
 	\begin{columns}
+		\fontsize{7pt}{7.2}\selectfont
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
 				\item Compensating for the imbalance in the empirical label
@@ -92,11 +92,12 @@
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
-			\begin{itemize}\setlength\itemsep{0em}
-				\item The empirical density does not accurately reflect the imbalance as seen by the model.
+			\begin{itemize}\setlength\itemsep{.5em}
 				\item Compensating for the imbalance in the empirical label
 				density distribution is INACCURATE.
-				\item Proposed solution: \textbf{Label distribution smoothing}
+				\item The empirical density does not accurately reflect the imbalance as seen by the model.
+				\item Intuition: dependence between features at nearby labels.
+				\item Proposed solution: \\\textbf{Label Distribution Smoothing (LDS)}
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -109,4 +110,41 @@
 		%\caption{}
 	\end{figure}
 	\credit{Image}{yang2021delving}
+\end{frame}
+
+\begin{frame}[shrink=3]{Label Distribution Smoothing (LDS)}
+	\begin{itemize}\setlength\itemsep{.5em}
+		\item  Starting points
+		\begin{itemize}
+			\item Dependence between features at nearby continuous labels
+			\item Expected density estimation
+			\begin{itemize}
+				\item Significant literature in statistics~(\cite{parzen1962estimation})
+				\item Kernel density estimation
+			\end{itemize}
+		\end{itemize}
+		\item Functioning
+		\begin{itemize}
+			\item Convolves a symmetric kernel with the empirical label density distribution.
+			\item Extracts a kernel-smoothed label density accounting for the feature overlap of neighbouring labels.
+		\end{itemize}
+		\item Symmetric kernel
+		\begin{itemize}
+			\item E.g., Gaussian or Laplacian kernel
+			\item Similarity between target values w.r.t. their distance in the target space.
+		\end{itemize}
+		\item \emph{Effective label density distribution}
+		\begin{equation*}
+			\tilde{p}(y') \triangleq \int_\mathcal{Y} k(y,y')p(y)dy
+		\end{equation*}
+		where 
+		\begin{itemize}
+			\item $p(y)$: nr. occurrences of label $y$ in training data
+		\end{itemize}
+		\item How to use it in practice?
+		\begin{itemize}
+			\item Possible direct adaptation of class imbalance techniques.
+			\item E.g., loss weighted by inverse effective label density
+		\end{itemize}
+	\end{itemize}
 \end{frame}
