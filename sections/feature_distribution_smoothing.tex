@@ -5,7 +5,7 @@
 			\item<2-> Continuity in the \textbf{target} space $\longleftrightarrow$ Continuity in the \textbf{feature} space
 			\item<3-> Data balance $\Longrightarrow$ close feature statistics of nearby targets
 		\end{enumerate}
-		\item<4-> Feature statistics: mean and variance w.r.t. each bin
+		\item<4-> Feature statistics: mean and variance (or covariance) w.r.t. each bin
 		\begin{equation*}
 			\{\bm{\mu}_b,\bm{\sigma}_b\}_{b=1}^B
 		\end{equation*}
@@ -43,13 +43,13 @@
 					\includegraphics[trim={0 0 0 24.7em},clip,scale=0.4]{images/fds_diff_train.pdf}
 				};
 			\end{tikzpicture}
-			\caption{Variance}
+			\caption{Covariance}
 		\end{subfigure}
 		%\caption{}
 	\end{figure}
 	\begin{itemize}
-		\item ${\bm{\mu}, \bm{\Sigma}}$: Running mean and variance
-		\item ${\bm{\tilde{\mu}}, \bm{\tilde{\Sigma}}}$: Smoothed mean and variance
+		\item ${\bm{\mu}, \bm{\Sigma}}$: Running mean and covariance
+		\item ${\tilde{\bm{\mu}}, \tilde{\bm{\Sigma}}}$: Smoothed mean and covariance
 	\end{itemize}
 	\credit{Image}{yang2021delving}
 \end{frame}
@@ -60,4 +60,33 @@
 		%\caption{}
 	\end{figure}
 	\credit{Image}{yang2021delving}
+\end{frame}
+
+\begin{frame}[shrink=4]{Feature Distribution Smoothing (FDS)}
+	\begin{itemize}
+		\item Transfers the feature statistics between nearby bins.
+		\item Aim: calibrate the potentially biased estimates of feature distribution, esp. for underrepresented target values in training data.
+		\item General functioning
+		\begin{itemize}
+			\item Estimates mean $\bm{\mu}_b$ and covariance $\bm{\Sigma}_b$ feature statistics by each target bin.
+			\item Smooths the feature statistics over the target bins $\mathcal{B}$ by a symmetric kernel $k(y_b,y_b')$. Obtains the smoothed mean $\tilde{\bm{\mu}}_b$ and covariance $\tilde{\bm{\Sigma}}_b$ feature statistics.
+			\item Whitens features (\cite{sun2016return}):
+			\begin{equation*}
+				\bm{z}^w = \bm{\Sigma}_b^{-\frac{1}{2}}(\bm{z} - \bm{\mu}_b)
+			\end{equation*}
+			\item Re-colors whitened features (\cite{sun2016return}):
+			\begin{equation*}
+				\bm{z}^r = \tilde{\bm{\Sigma}}_b \bm{z}^w + \tilde{\bm{\mu}}_b
+			\end{equation*}
+		\end{itemize}
+		\item Integration into deep learning
+		\begin{itemize}
+			\item Feature calibration layer after the final feature map.
+			\item Momentum update running statistics $\{\bm{\mu}_b,\bm{\Sigma}_b\}$ across each epoch. 
+			\begin{itemize}
+				\item Exponential Moving Average (EMA)
+			\end{itemize}
+			\item Smoothed statistics $\{\tilde{\bm{\Sigma}}_b,\tilde{\bm{\mu}}_b\}$ updated across different but fixed within each training epoch.
+		\end{itemize}
+	\end{itemize}
 \end{frame}
