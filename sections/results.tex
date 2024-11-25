@@ -199,127 +199,224 @@
 	\credit{Table}{yang2021delving}
 \end{frame}
 
-\begin{frame}{Could LDS + FDS help when the label distribution is skewed with one or more Gaussian peaks?}
-	\begin{itemize}\setlength\itemsep{1.5em}
-		\item Experimental setup
-		\begin{itemize}
-			\item Curated skewed label distributions with 1-4 Gaussian peaks on IMDB-WIKI-DIR
-			\item Compared with the vanilla model
-		\end{itemize}
-		\item Findings
-		\begin{itemize}
-			\item Robustness to distribution change
-			\item Brings improvement
-		\end{itemize}
-	\end{itemize}
-\end{frame}
+%\begin{frame}{Extrapolation \& Interpolation}
+%\end{frame}
+%
+%\begin{frame}{Understanding FDS}
+%\end{frame}
 
-\begin{frame}{Skewed label distribution with one Gaussian peak}
-	\begin{figure}[h]
-		\includegraphics[width=0.7\linewidth]{images/interp_extrap_diff_peak1.pdf}
-		\caption{MAE gains of LDS + FDS over the vanilla model.}
-	\end{figure}
-	\begin{itemize}
-		\item Performance gains, esp. for extrapolation \& interpolation
-	\end{itemize}
-	\credit{Image}{yang2021delving}
-\end{frame}
-
-\begin{frame}{Skewed label distribution with two Gaussian peaks}
-	\begin{figure}[h]
-		\includegraphics[width=0.7\linewidth]{images/interp_extrap_diff_peak2.pdf}
-		\caption{MAE gains of LDS + FDS over the vanilla model.}
-	\end{figure}
-	\begin{itemize}
-		\item Performance gains, esp. for extrapolation \& interpolation
-	\end{itemize}
-	\credit{Image}{yang2021delving}
-\end{frame}
-
-\begin{frame}{Skewed label distribution with three Gaussian peaks}
-	\begin{figure}[h]
-		\includegraphics[width=0.7\linewidth]{images/interp_extrap_diff_peak3.pdf}
-		\caption{MAE gains of LDS + FDS over the vanilla model.}
-	\end{figure}
-	\begin{itemize}
-		\item Performance gains, esp. for extrapolation \& interpolation
-	\end{itemize}
-	\credit{Image}{yang2021delving}
-\end{frame}
-
-\begin{frame}{Skewed label distribution with four Gaussian peaks}
-	\begin{figure}[h]
-		\includegraphics[width=0.7\linewidth]{images/interp_extrap_diff_peak4.pdf}
-		\caption{MAE gains of LDS + FDS over the vanilla model.}
-	\end{figure}
-	\begin{itemize}
-		\item Performance gains, esp. for extrapolation \& interpolation
-	\end{itemize}
-	\credit{Image}{yang2021delving}
-\end{frame}
-
-\begin{frame}{Skewed label distribution with two Gaussian peaks on IMDB-WIKI-DIR}
-	\begin{table}[t]
-		\setlength{\tabcolsep}{1.5pt}
-		\small
+\begin{frame}{Ablation: kernel type}{IMDB-WIKI}
+	\begin{table}[tb]
+		\setlength{\tabcolsep}{7.5pt}
 		\begin{center}
-			\resizebox{\textwidth}{!}{
-				\begin{tabular}{l|cccc|cccc}
-					\toprule[1.5pt]
-					Metrics      & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c}{GM~$\downarrow$}    \\ \midrule
-					Shot         & All   & w/ data  & Interp. & Extrap.   & All   & w/ data  & Interp. & Extrap.   \\ \midrule\midrule
-					\textsc{Vanilla}      & 11.72 & 9.32 & 16.13  & 18.19 & 7.44 & 5.33 &  14.41  & 16.74 \\ \midrule\midrule
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} &  10.54 &  8.31  &    14.14 & 17.38  & 6.50  & 4.67  & 12.13 & 15.36 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{FDS}} & 11.40 & 8.97 & 15.83  & 18.01  & 7.18  & 5.12 & 14.02 & 16.48 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} + \textbf{\textsc{FDS}} & \textbf{10.27} & \textbf{8.11}  & \textbf{13.71} & \textbf{17.02}  & \textbf{6.33} & \textbf{4.55}  & \textbf{11.71}  & \textbf{15.13}  \\ \midrule\midrule
-					\textsc{\textbf{Ours~(best)} vs. Vanilla}   & \textcolor{darkgreen}{\textbf{+1.45}} & \textcolor{darkgreen}{\textbf{+1.21}} & \textcolor{darkgreen}{\textbf{+2.42}} & \textcolor{darkgreen}{\textbf{+1.17}} & \textcolor{darkgreen}{\textbf{+1.11}} & \textcolor{darkgreen}{\textbf{+0.78}} & \textcolor{darkgreen}{\textbf{+2.70}} & \textcolor{darkgreen}{\textbf{+1.61}} \\
-					\bottomrule[1.5pt]
-				\end{tabular}
-			}
-		\end{center}
-		\caption{Interpolation \& extrapolation results}
-	\end{table}
-	\begin{itemize}
-		\item Best results by smoothing both label \& feature distributions
-	\end{itemize}
-	\credit{Table}{yang2021delving}
-\end{frame}
-
-\begin{frame}{Different skewed label distributions on IMDB-WIKI-DIR}
-	\begin{table}[t]
-		\setlength{\tabcolsep}{4.5pt}
-		\label{table:appendix-skewed-dist}
-		\small
-		\begin{center}
+			\small
 			\resizebox{0.95\textwidth}{!}{
-				\begin{tabular}{l|ccccccc|ccccccc}
+				\begin{tabular}{l|cccc|cccc|cccc}
 					\toprule[1.5pt]
-					Metrics      & \multicolumn{7}{c|}{MAE~$\downarrow$}       & \multicolumn{7}{c}{GM~$\downarrow$}    \\ \midrule
-					Shot         & All   & Many & Med. & Few & Zero & Interp. & Extrap.   & All   & Many & Med. & Few & Zero & Interp. & Extrap.   \\ \midrule\midrule
-					\multicolumn{9}{l}{\emph{\textbf{1 peak:}}} \\ \midrule
-					\textsc{Vanilla}       & 11.20 & 6.05 & 11.43 & 14.76 & 22.67 & $-$ & 22.67 & 7.02 & \textbf{3.84} & 8.67 & 12.26 & 21.07 & $-$ & 21.07 \\ [1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}}  & 10.09 & 6.26 & 9.91 & 12.12 & 19.37 & $-$ & 19.37 & 6.14 & 3.92 & 6.50 & 8.30 & 16.35 & $-$ & 16.35 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{FDS}}  & 11.04 & \textbf{5.97} & 11.19 & 14.54 & 22.35 & $-$ & 22.35 & 6.96 & \textbf{3.84} & 8.54 & 12.08 & 20.71 & $-$ & 20.71 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} + \textbf{\textsc{FDS}}  & \textbf{10.00} & 6.28 & \textbf{9.66} & \textbf{11.83} & \textbf{19.21} & $-$ & \textbf{19.21} & \textbf{6.09} & 3.96 & \textbf{6.26} & \textbf{8.14} & \textbf{15.89} & $-$ & \textbf{15.89}  \\ \midrule\midrule
-					\multicolumn{9}{l}{\emph{\textbf{2 peaks:}}} \\ \midrule
-					\textsc{Vanilla}      & 11.72 & 6.83 & 11.78 & 15.35 & 16.86 & 16.13  & 18.19 & 7.44 & 3.61 & 8.06 & 12.94 &15.21&  14.41  & 16.74 \\ [1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} &  10.54  & 6.72 & 9.65 & 12.60 & 15.30&   14.14 & 17.38  & 6.50    & 3.65 & \textbf{5.65} & 9.30 & 13.20 & 12.13 & 15.36 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{FDS}} & 11.40  & 6.69 & 11.02 & 14.85 & 16.61 & 15.83  & 18.01  & 7.18   & \textbf{3.50} & 7.49 & 12.73 & 14.86 & 14.02 & 16.48 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} + \textbf{\textsc{FDS}} & \textbf{10.27}  & \textbf{6.61} & \textbf{9.46} & \textbf{11.96} & \textbf{14.89} & \textbf{13.71} & \textbf{17.02}  & \textbf{6.33}   & 3.54 & 5.68 & \textbf{8.80} & \textbf{12.83} & \textbf{11.71}  & \textbf{15.13}  \\ \midrule\midrule
-					\multicolumn{9}{l}{\emph{\textbf{3 peaks:}}} \\ \midrule
-					\textsc{Vanilla}      & 9.83  & 7.01 & 9.81 & 11.93 & 20.11 & $-$ & 20.11 & 6.04 & 3.93 & 6.94 & 9.84 & 17.77 & $-$ & 17.77 \\ [1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} & 9.08 & \textbf{6.77} & 8.82 & 10.48 & 18.43 & $-$ & 18.43 & \textbf{5.35} & \textbf{3.78} & 5.63 & 7.49 & 15.46 & $-$ & 15.46 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{FDS}} & 9.65 & 6.88 & 9.58 & 11.75 & 19.80 & $-$ & 19.80 & 5.86 & 3.83 & 6.68 & 9.48 & 17.43 & $-$ & 17.43 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} + \textbf{\textsc{FDS}} & \textbf{8.96} & 6.88 & \textbf{8.62} & \textbf{10.08} & \textbf{17.76} & $-$ & \textbf{17.76} & 5.38  & 3.90 & \textbf{5.61} & \textbf{7.36} & \textbf{14.65} & $-$ & \textbf{14.65}  \\ \midrule\midrule
-					\multicolumn{9}{l}{\emph{\textbf{4 peaks:}}} \\ \midrule
-					\textsc{Vanilla}      & 9.49 & 7.23 & 9.73 & 10.85 & 12.16 & 8.23 & 18.78 & 5.68 & 3.45 & 6.95 & 8.20 & 9.43 & 6.89 & 16.02 \\ [1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} & 8.80 & \textbf{6.98} & 8.26 & 10.07 & 11.26 & 8.31 & \textbf{16.22} & 5.10 & \textbf{3.33} & \textbf{5.07} & 7.08 & 8.47 & 6.66 & \textbf{12.74} \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{FDS}} & 9.28 & 7.11 & 9.16 & 10.88 & 11.95 & 8.30 & 18.11 & 5.49 & 3.36 & 6.35 & 8.15 & 9.21 & 6.82 & 15.30 \\[1.2pt]
-					\textsc{Vanilla} + \textbf{\textsc{LDS}} + \textbf{\textsc{FDS}} & \textbf{8.76} & 7.07 & \textbf{8.23} & \textbf{9.54} & \textbf{11.13} & \textbf{8.05} & 16.32 & \textbf{5.05} & 3.36 & \textbf{5.07} & \textbf{6.56} & \textbf{8.30} & \textbf{6.34} & 13.10  \\ 
+					Metrics      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c}{GM~$\downarrow$}    \\ \midrule
+					Shot         & All   & Many  & Med. & Few & All   & Many  & Med. & Few   & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\textsc{Vanilla}   & 138.06 &  108.70  & 366.09  & 964.92  & 8.06 & 7.23 & 15.12  & 26.33 & 4.57 & 4.17 & 10.59  & 20.46 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}   & 131.65 & 109.04 & 298.98 & 834.08  & {7.83} & 7.31 & {12.43}  & {22.51} & {4.42} & {4.19} & {7.00}  & {13.94} \\[1.2pt]
+					\textsc{Triangular Kernel} & 133.77 & 110.24  & 309.70 & 850.74 & 7.89 & 7.30 & 12.72 & 22.80 & 4.50 & 4.24 & 7.75 & 14.91  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 132.87 &  109.27  & 312.10 & 829.83 & 7.87 & 7.29 & 12.68 & 22.38 & 4.50 & 4.26 & 7.29 & 13.71\\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}      & 133.81 & 107.51 & 332.90 & 916.18 & 7.85 & 7.18 & 13.35 & 24.12 & 4.47 & 4.18 & 8.18 & 15.18 \\[1.2pt]
+					\textsc{Triangular Kernel} & 134.09 & 110.49 & 301.18 & 927.99 & 7.97 & 7.41 & 12.20 & 23.99 & 4.64 & 4.41 & 7.06 & 14.28  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 133.00 & 104.26 & 352.95 & 968.62 & 8.05 & 7.25 & 14.78 & 26.16 & 4.71 & 4.33 & 10.19 & 19.09 \\
 					\bottomrule[1.5pt]
 				\end{tabular}
 			}
 		\end{center}
 	\end{table}
+	\begin{itemize}
+		\item All kernel types lead to gains
+		\item Often best results with Gaussian kernel
+	\end{itemize}
 	\credit{Table}{yang2021delving}
 \end{frame}
+
+\begin{frame}{Ablation: kernel type}{STS-B}
+	\begin{table}[tb]
+		\setlength{\tabcolsep}{4pt}
+		\begin{center}
+			\small
+			\resizebox{0.95\textwidth}{!}{
+				\begin{tabular}{l|cccc|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					Metrics      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c|}{Pearson correlation (\%)~$\uparrow$} & \multicolumn{4}{c}{Spearman correlation (\%)~$\uparrow$}   \\ \midrule
+					Shot         & All   & Many  & Med. & Few & All   & Many  & Med. & Few    & All   & Many  & Med. & Few & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\textsc{Vanilla}   & 0.974 & 0.851 & 1.520 & 0.984 & 0.794 & 0.740 & 1.043 & 0.771 & 74.2 & 72.0 & 62.7 & 75.2 & 74.4 & 68.8 & 50.5 & 75.0 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}   & 0.914 & 0.819 & 1.319 & 0.955 & 0.773 & 0.729 & 0.970 & 0.772  & 75.6 & 73.4 & 63.8 & 76.2 & 76.1 &  70.4 & 55.6 & 74.3 \\[1.2pt]
+					\textsc{Triangular Kernel} & 0.938 & 0.870 & 1.193 & 1.039 & 0.786 & 0.754 & 0.929 & 0.784  & 74.8 & 72.4 & 64.1 & 74.0 & 75.2 & 69.3 & 54.1 & 73.9  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 0.938 & 0.829 & 1.413 & 0.962 & 0.782 & 0.731 & 1.014 & 0.773 & 75.7 & 73.0 & 65.8 & 76.5 & 76.0 & 70.0 & 52.3 & 75.2 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}      & 0.916 & 0.875 & 1.027 & 1.086 & 0.767 & 0.746 & 0.840 & 0.811  & 75.5 & 73.0 & 67.0 & 72.8 & 75.8 & 69.9 & 54.4 & 72.0  \\[1.2pt]
+					\textsc{Triangular Kernel} & 0.935 & 0.863 & 1.239 & 0.966 & 0.762 & 0.725 & 0.912 & 0.788 & 74.6 & 72.4 & 64.8 & 75.9 & 74.4 & 69.1 & 48.4 & 75.4  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 0.925 & 0.843 & 1.247 & 1.020 & 0.771 & 0.733 & 0.929 & 0.800 & 75.0 & 72.6 & 64.7 & 74.2 & 75.4 & 70.1 & 53.5 & 73.5  \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item All kernel types lead to gains
+		\item Often best results with Gaussian kernel
+	\end{itemize}
+	\credit{Table}{yang2021delving}
+\end{frame}
+
+\begin{frame}{Ablation: Gaussian kernel hyper-parameters}{IMDB-WIKI}
+	\vspace{-1.3em}
+	\begin{table}[tb]
+		\setlength{\tabcolsep}{7.5pt}
+		\begin{center}
+			\small
+			\resizebox{0.65\textwidth}{!}{
+				\begin{tabular}{c|c|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					\multicolumn{2}{l|}{Metrics}      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c}{GM~$\downarrow$}    \\ \midrule
+					\multicolumn{2}{l|}{Shot}         & All   & Many  & Med. & Few & All   & Many  & Med. & Few   & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\multicolumn{2}{l|}{\textsc{Vanilla}}   & 138.06 &  108.70  & 366.09  & 964.92  & 8.06 & 7.23 & 15.12  & 26.33 & 4.57 & 4.17 & 10.59  & 20.46 \\ \midrule\midrule
+					$l$ & $\sigma$ &  \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\texttt{5}&\texttt{1}   & 132.08 & 108.53 & 309.03 & 843.53   & 7.80 & 7.22 & 12.61 & 22.33 &4.42 & 4.19 & 7.16 & 12.54 \\[1.2pt]
+					\texttt{9}&\texttt{1} & 135.04 & 112.32 & 307.90 & 803.15   & 7.97 & 7.39 & 12.74 & 22.19 & 4.55 & 4.30 & 7.53 & 14.11  \\[1.2pt]
+					\texttt{15}&\texttt{1} & 134.06 & 110.49 & 308.83 &  864.30 & 7.84 & 7.28 & 12.35 & 22.81 & 4.44 & 4.22 & 6.95 & 14.22\\[1.2pt] 
+					\texttt{5}&\texttt{2}   & 131.65 & 109.04 & 298.98 & 834.08  & 7.83 & 7.31 & 12.43  & 22.51 & 4.42 & 4.19 & 7.00  & 13.94 \\[1.2pt]
+					\texttt{9}&\texttt{2} & 136.78 & 112.41 & 322.65 & 850.47   & 8.02 & 7.41 & 13.00 & 23.23 & 4.55 & 4.29 & 7.55 & 15.65  \\[1.2pt]
+					\texttt{15}&\texttt{2} & 135.66 & 111.68 & 319.20 & 833.02   & 7.98 & 7.40 & 12.74 & 22.27 & 4.60 & 4.37 & 7.30 & 12.92\\[1.2pt] 
+					\texttt{5}&\texttt{3}   & 137.56 & 113.50 & 322.47 & 831.38 & 8.07 & 7.47 & 13.06 & 22.85 & 4.63 & 4.36 & 7.87 & 15.11 \\[1.2pt]
+					\texttt{9}&\texttt{3} & 138.91 & 114.89 & 319.40 & 863.16   & 8.18 & 7.57 & 13.19 & 23.33 & 4.71 & 4.44 & 8.09 & 15.17  \\[1.2pt]
+					\texttt{15}&\texttt{3} & 138.86 & 114.25 & 326.97 & 856.27   & 8.18 & 7.54 & 13.53 & 23.17 & 4.77 & 4.47 & 8.52 & 15.25\\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					% $l$ & $\sigma$ &  \\ \midrule
+					\texttt{5}&\texttt{1}   & 133.63 & 104.80 & 354.24 & 972.54 & 7.87 & 7.06 & 14.71 & 25.96 & 4.42 & 4.04 & 9.95 & 18.47 \\[1.2pt]
+					\texttt{9}&\texttt{1} & 134.34 & 105.97 & 356.54 & 919.16 & 7.95 & 7.18 & 14.58 & 24.80 & 4.54 & 4.20 & 9.56 & 15.13  \\[1.2pt]
+					\texttt{15}&\texttt{1} & 136.32 & 107.47 & 355.84 & 948.71 & 7.97 & 7.23 & 14.81 & 25.59 & 4.60 & 4.23 & 9.99 & 17.60 \\[1.2pt]
+					\texttt{5}&\texttt{2}   & 133.81 & 107.51 & 332.90 & 916.18 & 7.85 & 7.18 & 13.35 & 24.12 & 4.47 & 4.18 & 8.18 & 15.18 \\[1.2pt]
+					\texttt{9}&\texttt{2} & 133.99 & 105.01 & 357.31 & 963.79 & 7.94 & 7.11 & 14.95 & 25.97 & 4.48 & 4.09 & 10.49 & 18.19  \\[1.2pt]
+					\texttt{15}&\texttt{2} & 136.61 & 107.93 & 361.08 & 973.56 & 7.98 & 7.23 & 14.68 & 25.21 & 4.61 & 4.24 & 10.14 & 17.91 \\[1.2pt] 
+					\texttt{5}&\texttt{3}   & 136.81 & 107.76 & 359.08 & 953.16 & 7.98 & 7.18 & 14.85 & 24.94 & 4.53 & 4.15 & 10.27 & 17.33 \\[1.2pt]
+					\texttt{9}&\texttt{3} & 133.48 & 104.14 & 359.80 & 972.29 & 7.94 & 7.09 & 15.04 & 25.87 & 4.48 & 4.09 & 10.40 & 16.85  \\[1.2pt]
+					\texttt{15}&\texttt{3} & 132.55 & 103.08 & 360.39 & 970.43 & 8.03 & 7.22 & 14.86 & 25.40 & 4.67 & 4.33 & 10.04 & 13.86 \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}\tiny
+		\item Gaussian kernel size $l\in\{5,9,15\}$ and standard deviation $\sigma\in\{1,2,3\}$
+		\item LDS
+		\vskip-1ex
+		\begin{itemize}\tiny
+			%\item $11.4\%$ to $15.7\%$ relative MAE improvements in few-shot regions.
+			\item Smaller $\sigma$ usually leads to slightly better results over all regions. 
+			\item Larger gains w.r.t. the performance in medium-shot and few-shot regions.
+			\item Minor degradation in many-shot regions.
+		\end{itemize}
+		\item FDS
+		\vskip-1ex
+		\begin{itemize}\tiny
+			\item Smaller $l$ often obtains slightly higher improvements over all regions.
+			\item Equally boosts all the regions, with slightly smaller improvements in medium-shot and few-shot regions.
+		\end{itemize}
+		\item $3.3$-$6.2\%$ overall MSE gain
+		\item Best results with $l=5$ and $\sigma=2$
+		\item Robust to different hyper-parameters
+	\end{itemize}
+	\credit{Table}{yang2021delving}
+\end{frame}
+
+\begin{frame}{Ablation: Gaussian kernel hyper-parameters}{STS-B}
+	\begin{table}[H]
+		\setlength{\tabcolsep}{6pt}
+		\begin{center}
+			\small
+			\resizebox{0.79\textwidth}{!}{
+				\begin{tabular}{c|c|cccc|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					\multicolumn{2}{l|}{Metrics}      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c|}{Pearson correlation (\%)~$\uparrow$} & \multicolumn{4}{c}{Spearman correlation (\%)~$\uparrow$}   \\ \midrule
+					\multicolumn{2}{l|}{Shot}   & All   & Many  & Med. & Few   & All   & Many  & Med. & Few & All   & Many  & Med. & Few & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\multicolumn{2}{l|}{\textsc{Vanilla}}   & 0.974 & 0.851 & 1.520 & 0.984 & 0.794 & 0.740 & 1.043 & 0.771  & 74.2 & 72.0 & 62.7 & 75.2 & 74.4 & 68.8 & 50.5 & 75.0 \\ \midrule\midrule
+					$l$ & $\sigma$ &  \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\texttt{5}&\texttt{1}   & 0.942 & 0.825 & 1.431 & 1.023 & 0.781 & 0.726 & 1.016 & 0.809 & 75.1 & 73.2 & 61.8 & 74.5 & 75.3 & 70.2 & 52.2 & 72.5 \\[1.2pt]
+					\texttt{9}&\texttt{1} & 0.931 & 0.840 & 1.323 & 0.962 & 0.785 & 0.744 & 0.972 & 0.773 & 75.0 & 72.7 & 63.3 & 75.8 & 75.6 & 70.1 & 53.6 & 74.8  \\[1.2pt]
+					\texttt{15}&\texttt{1} & 0.941 & 0.833 & 1.413 & 0.953 & 0.781 & 0.728 & 1.014 & 0.776 & 75.0 & 72.8 & 62.6 & 76.3 & 75.5 & 70.2 & 52.0 & 74.6 \\[1.2pt] 
+					\texttt{5}&\texttt{2}   & 0.914 & 0.819 & 1.319 & 0.955 & 0.773 & 0.729 & 0.970 & 0.772 & 75.6 & 73.4 & 63.8 & 76.2 & 76.1 &  70.4 & 55.6 & 74.3 \\[1.2pt]
+					\texttt{9}&\texttt{2} & 0.926 & 0.823 & 1.379 & 0.944 & 0.782 & 0.733 & 1.003 & 0.764 & 75.5 & 73.4 & 63.6 & 76.8 & 76.0 & 70.5 & 53.5 & 76.2  \\[1.2pt]
+					\texttt{15}&\texttt{2} & 0.949 & 0.831 & 1.452 & 1.005 & 0.788 & 0.735 & 1.023 & 0.782 & 74.9 & 72.9 & 63.0 & 74.7 & 75.4 & 70.1 & 52.5 & 73.6 \\[1.2pt]
+					\texttt{5}&\texttt{3}   & 0.928 & 0.845 & 1.250 & 1.041 & 0.775 & 0.733 & 0.951 & 0.798 & 75.1 & 73.3 & 63.2 & 73.8 & 75.3 & 70.4 & 51.4 & 72.6 \\[1.2pt]
+					\texttt{9}&\texttt{3} & 0.939 & 0.816 & 1.462 & 1.000 & 0.786 & 0.732 & 1.030 & 0.783 & 75.3 & 73.5 & 62.6 & 74.7 & 75.9 & 70.9 & 53.0 & 73.7  \\[1.2pt]
+					\texttt{15}&\texttt{3} & 0.927 & 0.824 & 1.348 & 1.010 & 0.774 & 0.726 & 0.982 & 0.780 & 75.2 & 73.4 & 62.2 & 74.6 & 75.7 & 70.7 & 53.0 & 72.3 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					% $l$ & $\sigma$ &  \\ \midrule
+					\texttt{5}&\texttt{1}   & 0.943 & 0.869 & 1.217 & 1.066 & 0.776 & 0.742 & 0.914 & 0.799 & 74.4 & 71.7 & 65.6 & 72.5 & 74.2 & 68.4 & 51.1 & 71.2 \\[1.2pt]
+					\texttt{9}&\texttt{1} & 0.927 & 0.851 & 1.193 & 1.096 & 0.770 & 0.736 & 0.896 & 0.822 & 74.9 & 72.8 & 65.8 & 71.6 & 74.8 & 69.7 & 52.3 & 68.3  \\[1.2pt]
+					\texttt{15}&\texttt{1} & 0.926 & 0.854 & 1.202 & 1.029 & 0.776 & 0.743 & 0.914 & 0.800 & 74.9 & 72.6 & 66.1 & 74.0 & 75.1 & 69.8 & 49.5 & 73.6 \\[1.2pt] 
+					\texttt{5}&\texttt{2}   & 0.916 & 0.875 & 1.027 & 1.086 & 0.767 & 0.746 & 0.840 & 0.811 & 75.5 & 73.0 & 67.0 & 72.8 & 75.8 & 69.9 & 54.4 & 72.0 \\[1.2pt]
+					\texttt{9}&\texttt{2} & 0.933 & 0.888 & 1.068 & 1.081 & 0.776 & 0.752 & 0.855 & 0.839 & 74.8 & 72.0 & 67.9 & 72.2 & 74.9 & 68.9 & 53.3 & 72.0  \\[1.2pt]
+					\texttt{15}&\texttt{2} & 0.944 & 0.890 & 1.125 & 1.078 & 0.783 & 0.761 & 0.864 & 0.822 & 74.4 & 71.8 & 65.8 & 72.2 & 74.5 & 68.9 & 53.1 & 70.9 \\[1.2pt]
+					\texttt{5}&\texttt{3}   & 0.924 & 0.860 & 1.190 & 0.964 & 0.771 & 0.740 & 0.897 & 0.790 & 75.0 & 72.7 & 64.4 & 76.1 & 75.1 & 69.4 & 53.8 & 76.5 \\[1.2pt]
+					\texttt{9}&\texttt{3} & 0.932 & 0.878 & 1.149 & 0.982 & 0.770 & 0.746 & 0.876 & 0.780 & 74.8 & 72.5 & 63.8 & 75.3 & 74.8 & 69.3 & 50.2 & 75.6  \\[1.2pt]
+					\texttt{15}&\texttt{3} & 0.956 & 0.915 & 1.110 & 1.016 & 0.784 & 0.767 & 0.855 & 0.803 & 74.4 & 72.1 & 63.7 & 75.5 & 74.3 & 68.7 & 50.0 & 74.6 \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item Gaussian kernel size $l\in\{5,9,15\}$ and standard deviation $\sigma\in\{1,2,3\}$
+		\item $3.3$-$6.2\%$ overall MSE gain
+		\item Best results with $l=5$ and $\sigma=2$
+		\item Robust to different hyper-parameters
+	\end{itemize}
+	\credit{Table}{yang2021delving}
+\end{frame}
+
+\begin{frame}{Ablation: loss function}{STS-B}
+	\vspace{-1.8cm}
+	\begin{table}[H]
+		\setlength{\tabcolsep}{5pt}
+		\begin{center}
+			\small
+			\resizebox{0.95\textwidth}{!}{
+				\begin{tabular}{l|cccc|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					Metrics      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       &  \multicolumn{4}{c|}{Pearson correlation (\%)~$\uparrow$} & \multicolumn{4}{c}{Spearman correlation (\%)~$\uparrow$}   \\ \midrule
+					Shot         & All   & Many  & Med. & Few   & All   & Many  & Med. & Few & All   & Many  & Med. & Few & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\textsc{MAE (L1)}   & 0.893 & 0.808 & 1.241 & 0.964 & 0.765 & 0.727 & 0.938 & 0.758 & 76.3 & 73.9 & 66.0 & 75.9 & 76.7 & 71.1 & 54.5 & 75.6 \\[1.2pt]
+					\textsc{MSE (L2)} & 0.914 & 0.819 & 1.319 & 0.955 & 0.773 & 0.729 & 0.970 & 0.772  & 75.6 & 73.4 & 63.8 & 76.2 & 76.1 &  70.4 & 55.6 & 74.3  \\[1.2pt]
+					\textsc{Huber Loss (sL1)} & 0.902 & 0.811 & 1.276 & 0.978 & 0.761 & 0.718 & 0.954 & 0.751 & 76.1 & 74.2 & 64.7 & 75.5 & 76.5 & 71.6 & 52.9 & 74.3 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					\textsc{MAE (L1)}    & 0.918 & 0.860 & 1.105 & 1.082 & 0.762 & 0.733 & 0.859 & 0.833 & 75.5 & 73.7 & 65.3 & 72.3 & 75.6 & 70.9 & 52.1 & 71.5    \\[1.2pt]
+					\textsc{MSE (L2)}  & 0.916 & 0.875 & 1.027 & 1.086 & 0.767 & 0.746 & 0.840 & 0.811  & 75.5 & 73.0 & 67.0 & 72.8 & 75.8 & 69.9 & 54.4 & 72.0  \\[1.2pt]
+					\textsc{Huber Loss (sL1)} & 0.920 & 0.867 & 1.097 & 1.052 & 0.765 & 0.741 & 0.858 & 0.800 & 75.3 & 72.9 & 66.6 & 73.6 & 75.3 & 69.7 & 52.3 & 73.6  \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item Similar results for all losses
+		\item Robust to different losses
+	\end{itemize}
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[above=7em,left=1em] at (current page.south east) 
+		{
+			\includegraphics[width=0.5\textwidth]{images/losses.pdf}
+		};
+	\end{tikzpicture}
+	\footlineextra{%
+		\creditbase{Table}{yang2021delving}, \crediturlbase{Image}{https://medium.com/artificialis/loss-functions-361b2ad439a}%
+	}
+\end{frame}
+
+\input{sections/diverse_skewed_label_densities}
+
+\input{sections/performance_different_test_label_distributions}
+
+\input{sections/performance_comparison_to_imbalanced_classification_methods}

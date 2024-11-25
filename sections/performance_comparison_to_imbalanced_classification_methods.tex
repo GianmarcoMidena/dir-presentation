@@ -1,0 +1,39 @@
+\begin{frame}{Comparison to imbalanced classification methods}
+	\vspace{-0.1cm}
+	\begin{table}[ht]
+		\setlength{\tabcolsep}{7pt}
+		\small
+		\begin{center}
+			\resizebox{0.95\textwidth}{!}{
+				\begin{tabular}{l|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					Dataset & \multicolumn{4}{c|}{IMDB-WIKI-DIR (subsampled)} & \multicolumn{4}{c|}{STS-B-DIR} & \multicolumn{4}{c}{NYUD2-DIR} \\ \midrule
+					Metric & \multicolumn{4}{c|}{MAE~$\downarrow$} & \multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c}{RMSE~$\downarrow$} \\ \midrule
+					Shot & All & Many & Med. & Few & All & Many & Med. & Few & All & Many & Med. & Few \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{Imbalanced Classification:}}} \\ \midrule
+					\textsc{Cls-vanilla} & 15.94 & 15.64 & 18.95 & 30.21 & 1.926 & 1.906 & 2.022 & 1.907 & 1.576 & 0.596 & 1.011 & 2.275 \\ [1.2pt]
+					\textsc{CB}~(\cite{cui2019class}) & 22.41 & 22.32 & 22.05 & 32.90 & 2.159 & 2.194 & 2.028 & 2.107 & 1.664 & 0.592 & 1.044 & 2.415 \\ [1.2pt]
+					\textsc{cRT}~(\cite{kang2019decoupling}) & 15.65 & 15.33 & 17.52 & 29.54 & 1.891 & 1.906 & 1.930 & 1.650 & 1.488 & 0.659 & 1.032 & 2.107 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{Imbalanced Regression:}}} \\ \midrule
+					\textsc{Reg-vanilla} & 14.64 & 13.98 & 17.47 & 30.29 & 0.974 & 0.851 & 1.520 & 0.984 & 1.477 & \textbf{0.591} & 0.952 & 2.123 \\ [1.2pt]
+					\textsc{LDS} & {14.03} & {13.72} & {15.93} & {26.71} & 0.914 & 0.819 & 1.319 & 0.955 & 1.387 & 0.671 & 0.913 & 1.954 \\ [1.2pt]
+					\textsc{FDS} & {13.97} & {13.55} & {16.42} & {24.64} & 0.916 & 0.875 & \textbf{1.027} & 1.086 & 1.442 & 0.615 & 0.940 & 2.059 \\ [1.2pt]
+					\textsc{LDS + FDS} & \textbf{13.32} & \textbf{13.14} & \textbf{15.06} & \textbf{23.87} & \textbf{0.907} & \textbf{0.802} & 1.363 & \textbf{0.942} & \textbf{1.338} & 0.670 & \textbf{0.851} & \textbf{1.880} \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item Imbalanced regression methods outperform classification ones.
+		\item Can reduces error up to 50-60\% in few-shot regions
+		\item Imbalanced classification methods can perform worse than vanilla regression.
+		\item Main finding: imbalance regression requires something different than just imbalance classification methods, which
+		\begin{itemize}
+			\item can ignore similarity between nearby targets,
+			\item can ignore similarity between features linked to nearby targets,
+			\item cannot interpolate \& extrapolate in the continuous label space, so cannot deal with zero-shot label regions.
+		\end{itemize}
+	\end{itemize}
+	\credit{Table}{yang2021delving}
+\end{frame}

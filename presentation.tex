@@ -72,8 +72,10 @@ hyperref={
 	\end{tikzpicture}
 }
 
-\newcommand{\credit}[2]{\footlineextra{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \citeauthor{#2} (\citeyear{#2})}}}}
-\newcommand{\crediturl}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \url{#2}}}}
+\newcommand{\creditbase}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \citeauthor{#2} (\citeyear{#2})}}}
+\newcommand{\credit}[2]{\footlineextra{\creditbase{#1}{#2}}}
+\newcommand{\crediturlbase}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \url{#2}}}}
+\newcommand{\crediturl}[2]{\footlineextra{\crediturlbase{#1}{#2}}}
 \let\oldcite\cite
 \renewcommand{\cite}[1]{{\color{blue} \oldcite{#1}}}
 \newcommand{\citefoot}[1]{{\color{blue} \citeauthor{#1} (\citeyear{#1})}}
@@ -137,7 +139,7 @@ ICML 2021
 \input{sections/results}
 
 \section{References}
-\begin{frame}[noframenumbering,plain]%[allowframebreaks]
+\begin{frame}[noframenumbering,plain,allowframebreaks]
 \frametitle{References}
 \printbibliography
 \end{frame}

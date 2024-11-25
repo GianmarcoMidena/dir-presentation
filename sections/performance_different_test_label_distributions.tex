@@ -1,0 +1,38 @@
+\begin{frame}{Balanced vs. Imbalanced Test Label Distribution}{IMDB-WIKI}
+	\vspace{-0.2cm}
+	\begin{table}[ht]
+		\setlength{\tabcolsep}{6.5pt}
+		\small
+		\begin{center}
+			\resizebox{0.95\textwidth}{!}{
+				\begin{tabular}{l|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					Metrics      & \multicolumn{4}{c|}{MSE~$\downarrow$}       & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c}{GM~$\downarrow$}    \\ \midrule
+					Shot         & All & Many & Med. & Few & All & Many & Med. & Few & All & Many & Med. & Few \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{Balanced:}}} \\ \midrule
+					\textsc{Vanilla} & 138.06 & 108.70 & 366.09 & 964.92 & 8.06 & 7.23 & 15.12 & 26.33 & 4.57 & 4.17 & 10.59 & 20.46 \\ [1.2pt]
+					\textsc{Vanilla} + \textbf{\textsc{LDS}} + \textbf{\textsc{FDS}} & \textbf{129.35} & \textbf{106.52} & \textbf{311.49} & \textbf{811.82} & \textbf{7.78} & \textbf{7.20} & \textbf{12.61} & \textbf{22.19} & \textbf{4.37} & \textbf{4.12} & \textbf{7.39}  & \textbf{12.61}  \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{Same as training set:}}} \\ \midrule
+					\textsc{Vanilla} & \textbf{68.44} & \textbf{62.10} & 320.52 & 1350.01 & \textbf{5.84} & \textbf{5.72} & 15.11 & 30.54 & \textbf{3.44} & \textbf{3.40} & 11.76 & 24.06 \\ [1.2pt]
+					\textsc{Vanilla} + \textbf{\textsc{LDS}} + \textbf{\textsc{FDS}} & 69.86 & 63.43 & \textbf{161.97} & \textbf{1067.89} & {5.90} & {5.77} & \textbf{9.94}  & \textbf{25.17} & {3.48} & {3.44} & \textbf{7.03} & \textbf{15.95} \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item Skewed label distribution for training set
+		\item Case: balanced label distribution for test set.
+		\begin{itemize}
+			\item LDS and FDS can improve the performance of all the regions.
+		\end{itemize}
+		\item Case: skewed label distribution for test set, 
+		\\same label distribution for training set.
+		\begin{itemize}
+			\item Minor degradation in many-shot region.
+			\item Boosts in medium-shot and few-shot regions.
+			\item Note: overall performance dominated by many-shot region, potentially biased and undesired evaluation.
+		\end{itemize}
+	\end{itemize}
+	\credit{Table}{yang2021delving}
+\end{frame}
