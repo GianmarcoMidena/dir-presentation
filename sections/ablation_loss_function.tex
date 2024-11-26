@@ -1,0 +1,38 @@
+\begin{frame}{Ablation: loss function}{STS-B}
+	\vspace{-1.8cm}
+	\begin{table}[H]
+		\setlength{\tabcolsep}{5pt}
+		\begin{center}
+			\small
+			\resizebox{0.95\textwidth}{!}{
+				\begin{tabular}{l|cccc|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					Metrics      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       &  \multicolumn{4}{c|}{Pearson correlation (\%)~$\uparrow$} & \multicolumn{4}{c}{Spearman correlation (\%)~$\uparrow$}   \\ \midrule
+					Shot         & All   & Many  & Med. & Few   & All   & Many  & Med. & Few & All   & Many  & Med. & Few & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\textsc{MAE (L1)}   & 0.893 & 0.808 & 1.241 & 0.964 & 0.765 & 0.727 & 0.938 & 0.758 & 76.3 & 73.9 & 66.0 & 75.9 & 76.7 & 71.1 & 54.5 & 75.6 \\[1.2pt]
+					\textsc{MSE (L2)} & 0.914 & 0.819 & 1.319 & 0.955 & 0.773 & 0.729 & 0.970 & 0.772  & 75.6 & 73.4 & 63.8 & 76.2 & 76.1 &  70.4 & 55.6 & 74.3  \\[1.2pt]
+					\textsc{Huber Loss (sL1)} & 0.902 & 0.811 & 1.276 & 0.978 & 0.761 & 0.718 & 0.954 & 0.751 & 76.1 & 74.2 & 64.7 & 75.5 & 76.5 & 71.6 & 52.9 & 74.3 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					\textsc{MAE (L1)}    & 0.918 & 0.860 & 1.105 & 1.082 & 0.762 & 0.733 & 0.859 & 0.833 & 75.5 & 73.7 & 65.3 & 72.3 & 75.6 & 70.9 & 52.1 & 71.5    \\[1.2pt]
+					\textsc{MSE (L2)}  & 0.916 & 0.875 & 1.027 & 1.086 & 0.767 & 0.746 & 0.840 & 0.811  & 75.5 & 73.0 & 67.0 & 72.8 & 75.8 & 69.9 & 54.4 & 72.0  \\[1.2pt]
+					\textsc{Huber Loss (sL1)} & 0.920 & 0.867 & 1.097 & 1.052 & 0.765 & 0.741 & 0.858 & 0.800 & 75.3 & 72.9 & 66.6 & 73.6 & 75.3 & 69.7 & 52.3 & 73.6  \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item Similar results for all losses
+		\item Robust to different losses
+	\end{itemize}
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[above=7em,left=1em] at (current page.south east) 
+		{
+			\includegraphics[width=0.5\textwidth]{images/losses.pdf}
+		};
+	\end{tikzpicture}
+	\footlineextra{%
+		\creditbase{Table}{yang2021delving}, \crediturlbase{Image}{https://medium.com/artificialis/loss-functions-361b2ad439a}%
+	}
+\end{frame}

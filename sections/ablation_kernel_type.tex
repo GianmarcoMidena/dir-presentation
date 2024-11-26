@@ -1,0 +1,61 @@
+\begin{frame}{Ablation: kernel type}{IMDB-WIKI}
+	\begin{table}[tb]
+		\setlength{\tabcolsep}{7.5pt}
+		\begin{center}
+			\small
+			\resizebox{0.95\textwidth}{!}{
+				\begin{tabular}{l|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					Metrics      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c}{GM~$\downarrow$}    \\ \midrule
+					Shot         & All   & Many  & Med. & Few & All   & Many  & Med. & Few   & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\textsc{Vanilla}   & 138.06 &  108.70  & 366.09  & 964.92  & 8.06 & 7.23 & 15.12  & 26.33 & 4.57 & 4.17 & 10.59  & 20.46 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}   & 131.65 & 109.04 & 298.98 & 834.08  & {7.83} & 7.31 & {12.43}  & {22.51} & {4.42} & {4.19} & {7.00}  & {13.94} \\[1.2pt]
+					\textsc{Triangular Kernel} & 133.77 & 110.24  & 309.70 & 850.74 & 7.89 & 7.30 & 12.72 & 22.80 & 4.50 & 4.24 & 7.75 & 14.91  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 132.87 &  109.27  & 312.10 & 829.83 & 7.87 & 7.29 & 12.68 & 22.38 & 4.50 & 4.26 & 7.29 & 13.71\\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}      & 133.81 & 107.51 & 332.90 & 916.18 & 7.85 & 7.18 & 13.35 & 24.12 & 4.47 & 4.18 & 8.18 & 15.18 \\[1.2pt]
+					\textsc{Triangular Kernel} & 134.09 & 110.49 & 301.18 & 927.99 & 7.97 & 7.41 & 12.20 & 23.99 & 4.64 & 4.41 & 7.06 & 14.28  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 133.00 & 104.26 & 352.95 & 968.62 & 8.05 & 7.25 & 14.78 & 26.16 & 4.71 & 4.33 & 10.19 & 19.09 \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item All kernel types lead to gains
+		\item Often best results with Gaussian kernel
+	\end{itemize}
+	\credit{Table}{yang2021delving}
+\end{frame}
+
+\begin{frame}{Ablation: kernel type}{STS-B}
+	\begin{table}[tb]
+		\setlength{\tabcolsep}{4pt}
+		\begin{center}
+			\small
+			\resizebox{0.95\textwidth}{!}{
+				\begin{tabular}{l|cccc|cccc|cccc|cccc}
+					\toprule[1.5pt]
+					Metrics      &\multicolumn{4}{c|}{MSE~$\downarrow$} & \multicolumn{4}{c|}{MAE~$\downarrow$}       & \multicolumn{4}{c|}{Pearson correlation (\%)~$\uparrow$} & \multicolumn{4}{c}{Spearman correlation (\%)~$\uparrow$}   \\ \midrule
+					Shot         & All   & Many  & Med. & Few & All   & Many  & Med. & Few    & All   & Many  & Med. & Few & All   & Many  & Med. & Few   \\ \midrule\midrule
+					\textsc{Vanilla}   & 0.974 & 0.851 & 1.520 & 0.984 & 0.794 & 0.740 & 1.043 & 0.771 & 74.2 & 72.0 & 62.7 & 75.2 & 74.4 & 68.8 & 50.5 & 75.0 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{LDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}   & 0.914 & 0.819 & 1.319 & 0.955 & 0.773 & 0.729 & 0.970 & 0.772  & 75.6 & 73.4 & 63.8 & 76.2 & 76.1 &  70.4 & 55.6 & 74.3 \\[1.2pt]
+					\textsc{Triangular Kernel} & 0.938 & 0.870 & 1.193 & 1.039 & 0.786 & 0.754 & 0.929 & 0.784  & 74.8 & 72.4 & 64.1 & 74.0 & 75.2 & 69.3 & 54.1 & 73.9  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 0.938 & 0.829 & 1.413 & 0.962 & 0.782 & 0.731 & 1.014 & 0.773 & 75.7 & 73.0 & 65.8 & 76.5 & 76.0 & 70.0 & 52.3 & 75.2 \\ \midrule\midrule
+					\multicolumn{9}{l}{\emph{\textbf{FDS:}}} \\ \midrule
+					\textsc{Gaussian Kernel}      & 0.916 & 0.875 & 1.027 & 1.086 & 0.767 & 0.746 & 0.840 & 0.811  & 75.5 & 73.0 & 67.0 & 72.8 & 75.8 & 69.9 & 54.4 & 72.0  \\[1.2pt]
+					\textsc{Triangular Kernel} & 0.935 & 0.863 & 1.239 & 0.966 & 0.762 & 0.725 & 0.912 & 0.788 & 74.6 & 72.4 & 64.8 & 75.9 & 74.4 & 69.1 & 48.4 & 75.4  \\[1.2pt]
+					\textsc{Laplacian Kernel} & 0.925 & 0.843 & 1.247 & 1.020 & 0.771 & 0.733 & 0.929 & 0.800 & 75.0 & 72.6 & 64.7 & 74.2 & 75.4 & 70.1 & 53.5 & 73.5  \\
+					\bottomrule[1.5pt]
+				\end{tabular}
+			}
+		\end{center}
+	\end{table}
+	\begin{itemize}
+		\item All kernel types lead to gains
+		\item Often best results with Gaussian kernel
+	\end{itemize}
+	\credit{Table}{yang2021delving}
+\end{frame}
