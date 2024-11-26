@@ -24,12 +24,12 @@
 			}
 		\end{center}
 	\end{table}
-	\begin{itemize}
+	\begin{itemize}\setlength\itemsep{.5em}\footnotesize
 		\item Imbalanced regression methods outperform classification ones.
 		\item Can reduce error up to 50-60\% in few-shot regions
 		\item Imbalanced classification methods can perform worse than vanilla regression.
 		\item Main finding: imbalance regression requires something different than just imbalance classification methods, which
-		\begin{itemize}
+		\begin{itemize}\setlength\itemsep{.1em}\footnotesize
 			\item can ignore similarity between nearby targets,
 			\item can ignore similarity between features linked to nearby targets,
 			\item cannot interpolate \& extrapolate in continuous label space, so cannot deal with zero-shot label regions.
