@@ -1,17 +1,21 @@
 \begin{frame}{Baselines (1/2)}
-	\begin{enumerate}\setlength\itemsep{1.5em}
+	\begin{enumerate}\footnotesize\setlength\itemsep{0.5em}
 		\item<1-> Vanilla: neglects data imbalance
-		\item<2-> Synthetic samples
-		\begin{itemize}
+		\begin{itemize}\footnotesize
+			\item[+]<2-> \underline{LDS: loss re-weighting by inverse density}
+		\end{itemize}
+		\item<3-> Synthetic samples
+		\begin{itemize}\footnotesize
 			\item SMOTER (\cite{torgo2013smote})
 			\begin{enumerate}
 				\item Defines frequent and rare regions using label density.
+				\item[+]<4-> \underline{LDS: density estimation}
 				\item Creates synthetic samples for pre-defined rare regions by linearly interpolating both inputs and labels.
 			\end{enumerate}
 			\item SMOGN (\cite{branco2017smogn}): augments SMOTER with Gaussian noise
-		\end{itemize}
-		\item<3-> Focal-R
-		\begin{equation*}
+		\end{itemize}\footnotesize
+		\item<5-> Focal-R
+		\begin{equation*}\footnotesize
 			\frac{1}{n} \sum_{i=1}^n \sigma(|\beta e_i|)^\gamma e_i
 		\end{equation*}
 		\begin{itemize}
@@ -20,6 +24,7 @@
 			\item $e_i$: $L_1$ error for $i$-th sample
 			\item $\beta$, $\gamma$: hyper-parameters
 			\item Inspired by Focal Loss (\cite{lin2017focal}) for classification
+			\item[+]<6-> \underline{LDS: loss re-weighting by inverse density}
 		\end{itemize}
 	\end{enumerate}
 \end{frame}
@@ -32,13 +37,15 @@
 			\begin{enumerate}
 				\item Train encoder
 				\item Re-train regressor with inverse re-weighting and frozen encoder.
+				\item[+]<2-> \underline{LDS: loss re-weighting by inverse density}
 			\end{enumerate}
 			\item Inspired by \cite{kang2019decoupling}
 		\end{itemize}
-		\item<2-> Cost-sensitive re-weighting: re-weighting schemes based on label distribution
+		\item<3-> Cost-sensitive re-weighting: re-weighting schemes based on label distribution
 		\begin{itemize}
 			\item Inverse-frequency weighting (INV)
 			\item Square-root weighting variant (SQINV)
+			\item[+]<4-> \underline{LDS: density estimation}
 		\end{itemize}
 	\end{enumerate}
 \end{frame}
