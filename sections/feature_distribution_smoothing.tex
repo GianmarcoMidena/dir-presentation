@@ -1,15 +1,17 @@
+\sectionframe{Feature Distribution Smoothing (FDS)}
+
 \begin{frame}{Feature Distribution Smoothing (FDS) - Preliminaries}
 	\begin{itemize}\setlength\itemsep{1.5em}
-		\item<2-> Starting points
+		\item<1-> Starting points
 		\begin{enumerate}
-			\item<2-> Continuity in the \textbf{target} space $\longleftrightarrow$ Continuity in the \textbf{feature} space
-			\item<3-> Data balance $\Longrightarrow$ close feature statistics of nearby targets
+			\item Continuity in \textbf{target} space $\longleftrightarrow$ Continuity in \textbf{feature} space
+			\item Data balance $\Longrightarrow$ close feature statistics of nearby targets
 		\end{enumerate}
-		\item<4-> Feature statistics: mean and variance (or covariance) w.r.t. each bin
+		\item<2-> Feature statistics: mean and variance (or covariance) w.r.t. each bin
 		\begin{equation*}
 			\{\bm{\mu}_b,\bm{\sigma}_b\}_{b=1}^B
 		\end{equation*}
-		\item<5-> (next slides) Feature statistics similarity: cosine similarity of \\feature statistics between one anchor bin $b_0$ and all other bins
+		\item<3-> (next slides) Feature statistics similarity: cosine similarity of \\feature statistics between one anchor bin $b_0$ and all other bins
 		\begin{itemize}
 			\item $b_0 = 0, 30, 60, 90$ (age): chosen anchor bins
 			\item different target densities: \\many ($>$100), medium (20-100), few~($<$20) examples
@@ -63,25 +65,19 @@
 \end{frame}
 
 \begin{frame}[shrink=4]{Feature Distribution Smoothing (FDS)}
-	\begin{itemize}
-		\item Transfers the feature statistics between nearby bins.
-		\item Aim: calibrate the potentially biased estimates of feature distribution, esp. for underrepresented target values in training data.
-		\item General functioning
+	\begin{itemize}\setlength\itemsep{1.5em}
+		\item<1-> Transfers feature statistics between nearby bins.
+		\item<1-> Aims to calibrate potentially biased estimates of feature distribution, esp. for underrepresented target values in training data.
+		\item<2-> General functioning
 		\begin{itemize}
 			\item Estimates mean $\bm{\mu}_b$ and covariance $\bm{\Sigma}_b$ feature statistics by each target bin.
-			\item Smooths the feature statistics over the target bins $\mathcal{B}$ by a symmetric kernel $k(y_b,y_b')$. Obtains the smoothed mean $\tilde{\bm{\mu}}_b$ and covariance $\tilde{\bm{\Sigma}}_b$ feature statistics.
-			\item Whitens features (\cite{sun2016return}):
-			\begin{equation*}
-				\bm{z}^w = \bm{\Sigma}_b^{-\frac{1}{2}}(\bm{z} - \bm{\mu}_b)
-			\end{equation*}
-			\item Re-colors whitened features (\cite{sun2016return}):
-			\begin{equation*}
-				\bm{z}^r = \tilde{\bm{\Sigma}}_b \bm{z}^w + \tilde{\bm{\mu}}_b
-			\end{equation*}
+			\item Smooths feature statistics over target bins $\mathcal{B}$ by symmetric kernel $k(y_b,y_b')$. Obtains smoothed mean $\tilde{\bm{\mu}}_b$ and covariance $\tilde{\bm{\Sigma}}_b$ feature statistics.
+			\item Whitens features (\cite{sun2016return}): $\bm{z}^w = \bm{\Sigma}_b^{-\frac{1}{2}}(\bm{z} - \bm{\mu}_b)$
+			\item Re-colors whitened features (\cite{sun2016return}): $\bm{z}^r = \tilde{\bm{\Sigma}}_b \bm{z}^w + \tilde{\bm{\mu}}_b$
 		\end{itemize}
-		\item Integration into deep learning
+		\item<3-> Integration into deep learning
 		\begin{itemize}
-			\item Feature calibration layer after the final feature map.
+			\item Feature calibration layer after final feature map.
 			\item Momentum update running statistics $\{\bm{\mu}_b,\bm{\Sigma}_b\}$ across each epoch. 
 			\begin{itemize}
 				\item Exponential Moving Average (EMA)

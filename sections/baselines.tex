@@ -1,7 +1,7 @@
 \begin{frame}{Baselines (1/2)}
-	\begin{itemize}\setlength\itemsep{1.5em}
-		\item Vanilla: neglects data imbalance
-		\item Synthetic samples
+	\begin{enumerate}\setlength\itemsep{1.5em}
+		\item<1-> Vanilla: neglects data imbalance
+		\item<2-> Synthetic samples
 		\begin{itemize}
 			\item SMOTER (\cite{torgo2013smote})
 			\begin{enumerate}
@@ -10,23 +10,23 @@
 			\end{enumerate}
 			\item SMOGN (\cite{branco2017smogn}): augments SMOTER with Gaussian noise
 		\end{itemize}
-		\item Focal-R
+		\item<3-> Focal-R
 		\begin{equation*}
 			\frac{1}{n} \sum_{i=1}^n \sigma(|\beta e_i|)^\gamma e_i
 		\end{equation*}
 		\begin{itemize}
 			\item Error-aware loss
-			\item Maps the absolute error into $[0, 1]$.
-			\item $e_i$: $L_1$ error for the $i$-th sample
+			\item Maps absolute error into $[0, 1]$.
+			\item $e_i$: $L_1$ error for $i$-th sample
 			\item $\beta$, $\gamma$: hyper-parameters
 			\item Inspired by Focal Loss (\cite{lin2017focal}) for classification
 		\end{itemize}
-	\end{itemize}
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}{Baselines (2/2)}
-	\begin{itemize}\setlength\itemsep{1.5em}
-		\item Regressor re-training (RRT)
+	\begin{enumerate}\setcounter{enumi}{3}\setlength\itemsep{1.5em}
+		\item<1-> Regressor re-training (RRT)
 		\begin{itemize}
 			\item Two-stage training
 			\begin{enumerate}
@@ -35,10 +35,10 @@
 			\end{enumerate}
 			\item Inspired by \cite{kang2019decoupling}
 		\end{itemize}
-		\item Cost-sensitive re-weighting: re-weighting schemes based on label distribution
+		\item<2-> Cost-sensitive re-weighting: re-weighting schemes based on label distribution
 		\begin{itemize}
 			\item Inverse-frequency weighting (INV)
 			\item Square-root weighting variant (SQINV)
 		\end{itemize}
-	\end{itemize}
+	\end{enumerate}
 \end{frame}

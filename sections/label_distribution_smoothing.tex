@@ -1,19 +1,17 @@
 \sectionframe{Label Distribution Smoothing (LDS)}
 \begin{frame}{Imbalanced Categorical vs. Continuous Label Space (1/3)}
-	\begin{figure}[h]
-		\begin{subfigure}{0.48\textwidth}
-			\includegraphics[width=\linewidth]{images/err_motivate_1_left.pdf}
-			\caption{Classification}
-		\end{subfigure}\hspace{1em}%
-		\begin{subfigure}{0.44\textwidth}
-			\includegraphics[width=\linewidth]{images/err_motivate_1_right.pdf}
-			\caption{Regression}
-		\end{subfigure}
-		%\caption{}
-	\end{figure}
-	\footnotesize
-	\vspace{-1.5em}
-	\begin{columns}
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[right=0.28\textwidth,below=2em] at (current page.north west) 
+		{
+			\includegraphics[width=0.5\textwidth]{images/err_motivate_1_left.pdf}
+		};
+		\node[left=0.25\textwidth,below=2em] at (current page.north east) 
+		{
+			\includegraphics[width=0.46\textwidth]{images/err_motivate_1_right.pdf}
+		};
+	\end{tikzpicture}
+	\vspace{0.45\textheight}
+	\begin{columns}[T]\footnotesize
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
 				\item task: picture $\longrightarrow$ class
@@ -28,8 +26,8 @@
 			\end{itemize}
 		\end{column}
 	\end{columns}
-	\vspace{0.5em}
-	\begin{itemize}
+	\vspace{1em}
+	\begin{itemize}\footnotesize
 		\centering\item Simulated label imbalance
 		\centering\item Label density distributions forced to be equal
 		\centering\item Balanced test sets
@@ -38,31 +36,28 @@
 \end{frame}
 
 \begin{frame}{Imbalanced Categorical vs. Continuous Label Space (2/3)}
-	\vspace{-2em}
-	\begin{figure}[h]
-		\begin{subfigure}{0.48\textwidth}
-			\includegraphics[width=\linewidth]{images/err_motivate_1_left.pdf}
-			\caption{Classification}
-		\end{subfigure}\hspace{1em}%
-		\begin{subfigure}{0.44\textwidth}
-			\includegraphics[width=\linewidth]{images/err_motivate_1_right.pdf}
-			\caption{Regression}
-		\end{subfigure}
-		%\caption{}
-	\end{figure}
-	\footnotesize
-	\vspace{-.5em}
-	\begin{columns}
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[right=0.28\textwidth,below=2em] at (current page.north west) 
+		{
+			\includegraphics[width=0.5\textwidth]{images/err_motivate_1_left.pdf}
+		};
+		\node[left=0.25\textwidth,below=2em] at (current page.north east) 
+		{
+			\includegraphics[width=0.46\textwidth]{images/err_motivate_1_right.pdf}
+		};
+	\end{tikzpicture}
+	\vspace{0.45\textheight}
+	\begin{columns}[T]\footnotesize
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item the error distribution \emph{correlates} with the label density distribution
-				\item majority classes with more examples are better learned than minority classes
+				\item error distribution \emph{correlates} with label density distribution
+				\item<2-> majority classes with more examples are better learned than minority classes
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item the error distribution DOES NOT \emph{correlate} well with the label density distribution
-				\item smoother error distribution
+				\item error distribution DOES NOT \emph{correlate} well with label density distribution
+				\item<2-> smoother error distribution
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -70,34 +65,32 @@
 \end{frame}
 
 \begin{frame}{Imbalanced Categorical vs. Continuous Label Space (3/3)}
-	\vspace{-0.4em}
-	\begin{figure}[h]
-		\begin{subfigure}{0.48\textwidth}
-			\includegraphics[width=\linewidth]{images/err_motivate_1_left.pdf}
-			\caption{Classification}
-		\end{subfigure}\hspace{1em}%
-		\begin{subfigure}{0.44\textwidth}
-			\includegraphics[width=\linewidth]{images/err_motivate_1_right.pdf}
-			\caption{Regression}
-		\end{subfigure}
-		%\caption{}
-	\end{figure}
-	\vspace{-1em}
-	\begin{columns}
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[right=0.28\textwidth,below=2em] at (current page.north west) 
+		{
+			\includegraphics[width=0.5\textwidth]{images/err_motivate_1_left.pdf}
+		};
+		\node[left=0.25\textwidth,below=2em] at (current page.north east) 
+		{
+			\includegraphics[width=0.46\textwidth]{images/err_motivate_1_right.pdf}
+		};
+	\end{tikzpicture}
+	\vspace{0.45\textheight}
+	\begin{columns}[T]\footnotesize
 		\fontsize{7pt}{7.2}\selectfont
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}
-				\item Compensating for the imbalance in the empirical label
+				\item Compensating for imbalance in empirical label
 				density distribution WORKS WELL.
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}\setlength\itemsep{.5em}
-				\item Compensating for the imbalance in the empirical label
+				\item Compensating for imbalance in empirical label
 				density distribution is INACCURATE.
-				\item The empirical density does not accurately reflect the imbalance as seen by the model.
-				\item Intuition: dependence between features at nearby labels.
-				\item Proposed solution: \\\textbf{Label Distribution Smoothing (LDS)}
+				\item Empirical density does not accurately reflect imbalance as seen by model.
+				\item<2-> Intuition: dependence between features at nearby labels.
+				\item<2-> Proposed solution: \\\textbf{Label Distribution Smoothing (LDS)}
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -114,37 +107,37 @@
 
 \begin{frame}[shrink=3]{Label Distribution Smoothing (LDS)}
 	\begin{itemize}\setlength\itemsep{.5em}
-		\item  Starting points
+		\item<1-> Starting points
 		\begin{itemize}
-			\item Dependence between features at nearby continuous labels
+			\item Dependence between features at nearby continuous labels.
 			\item Expected density estimation
 			\begin{itemize}
 				\item Significant literature in statistics~(\cite{parzen1962estimation})
 				\item Kernel density estimation
 			\end{itemize}
 		\end{itemize}
-		\item Functioning
+		\item<2-> Functioning
 		\begin{itemize}
-			\item Convolves a symmetric kernel with the empirical label density distribution.
-			\item Extracts a kernel-smoothed label density accounting for the feature overlap of neighbouring labels.
+			\item Convolves symmetric kernel with empirical label density distribution.
+			\item Extracts kernel-smoothed label density accounting for feature overlap of neighbouring labels.
 		\end{itemize}
-		\item Symmetric kernel
+		\item<3-> Symmetric kernel
 		\begin{itemize}
-			\item E.g., Gaussian or Laplacian kernel
-			\item Similarity between target values w.r.t. their distance in the target space.
+			\item E.g., Gaussian, Laplacian, triangular kernel.
+			\item Similarity between target values w.r.t. their distance in target space.
 		\end{itemize}
-		\item \emph{Effective label density distribution}
+		\item<4-> \emph{Effective label density distribution}
 		\begin{equation*}
 			\tilde{p}(y') \triangleq \int_\mathcal{Y} k(y,y')p(y)dy
 		\end{equation*}
 		where 
 		\begin{itemize}
-			\item $p(y)$: nr. occurrences of label $y$ in training data
+			\item $p(y)$: nr. occurrences of label $y$ in training data.
 		\end{itemize}
-		\item How to use it in practice?
+		\item<5-> Usage
 		\begin{itemize}
 			\item Possible direct adaptation of class imbalance techniques.
-			\item E.g., loss weighted by inverse effective label density
+			\item E.g., loss weighted by inverse effective label density.
 		\end{itemize}
 	\end{itemize}
 \end{frame}

@@ -3,7 +3,7 @@
 		\setlength{\tabcolsep}{4pt}
 		\small
 		\begin{center}
-			\resizebox{.9\textwidth}{!}{
+			\resizebox{.85\textwidth}{!}{
 				\begin{tabular}{c|c|c|c|c|c|c}
 					\toprule[1.5pt]
 					Dataset       & \multicolumn{1}{c|}{Input type} &\multicolumn{1}{c|}{Target type} & \multicolumn{1}{c|}{Target range} & \multicolumn{1}{c|}{Bin size} & \multicolumn{1}{c|}{Max bin density} & \multicolumn{1}{c}{Min bin density} \\ \midrule\midrule
@@ -20,7 +20,7 @@
 		\setlength{\tabcolsep}{4pt}
 		\small
 		\begin{center}
-			\resizebox{0.5\textwidth}{!}{
+			\resizebox{0.45\textwidth}{!}{
 				\begin{tabular}{c|c|c|c}
 					\toprule[1.5pt]
 					Dataset       & \multicolumn{1}{c|}{\# Training set} & \multicolumn{1}{c|}{\# Val. set} & \multicolumn{1}{c}{\# Test set} \\ \midrule\midrule
@@ -31,24 +31,26 @@
 					SHHS-DIR      & 1,892 & 369 & 369 \\
 					\bottomrule[1.5pt]
 			\end{tabular}}
+			\creditbase{Table}{yang2021delving}
 		\end{center}
 	\end{table}
 	\begin{itemize}\tiny
-		\item Full-night Polysomnography (PSG) signals: Electroencephalography (EEG), Electrocardiography (ECG), and breathing signals (airflow, abdomen, and thorax).
-		\item Example of an RGB image (left) and its depth map (right).
+		\item<2-> Full-night Polysomnography (PSG) signals: Electroencephalography (EEG), Electrocardiography (ECG), and breathing signals (airflow, abdomen, and thorax).
+		\item<2-> An indoor scene image (left) and its depth map (right):
 		\begin{figure}[h]
 			\includegraphics[width=0.5\linewidth]{images/nyu_depth_v2_raw.jpg}
 		\end{figure}
+		\crediturlbase{Image}{https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html}
 	\end{itemize}
-	\footlineextra{%
-		\creditbase{Table}{yang2021delving}, \crediturlbase{Image}{https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html}%
-	}
 \end{frame}
 
-\begin{frame}{(Training) Datasets - Label Distributions}
+\begin{frame}{Label Distributions}
 	\begin{center}
 		\includegraphics[trim={0 0 52em 0},clip,scale=0.4]{images/dataset_info.pdf}
 		\includegraphics[trim={78.8em 0 0 0},clip,scale=0.4]{images/dataset_info.pdf}
 	\end{center}
+	\begin{itemize}
+		\item Typically for training only
+	\end{itemize}
 	\credit{Image}{yang2021delving}
 \end{frame}
